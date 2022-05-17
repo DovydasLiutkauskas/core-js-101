@@ -52,8 +52,12 @@ function getFizzBuzz(num) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  let factorial = 1;
+  for (let i = n; i > 0; i -= 1) {
+    factorial *= i;
+  }
+  return factorial;
 }
 
 
@@ -69,8 +73,12 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let answer = 0;
+  for (let i = n1; i <= n2; i += 1) {
+    answer += i;
+  }
+  return answer;
 }
 
 
@@ -89,8 +97,11 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  if (a + b > c && b + c > a && a + c > b) {
+    return true;
+  }
+  return false;
 }
 
 
@@ -173,8 +184,18 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  for (let i = 0; i < str.length; i += 1) {
+    for (let j = 0; j < str.length; j += 1) {
+      if (str[i] === str[j] && i !== j) {
+        break;
+      }
+      if (j === str.length - 1) {
+        return str[i];
+      }
+    }
+  }
+  return null;
 }
 
 
@@ -200,8 +221,13 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const start = isStartIncluded ? '[' : '(';
+  const end = isEndIncluded ? ']' : ')';
+  if (a > b) {
+    return `${start}${b}, ${a}${end}`;
+  }
+  return `${start}${a}, ${b}${end}`;
 }
 
 
@@ -217,8 +243,9 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  const splitedArray = str.split(' ');
+  return splitedArray.map((el) => el.split('').reverse().join('')).reverse().join(' ');
 }
 
 
@@ -234,8 +261,8 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  return num.toString().split('').reverse().join('');
 }
 
 
@@ -277,8 +304,13 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const numArray = num.toString().split('');
+  const sum = numArray.reduce((summing, el) => summing + Number(el), 0);
+  if (sum > 9) {
+    return sum.toString().split('').reduce((summing, el) => summing + Number(el), 0);
+  }
+  return sum;
 }
 
 
@@ -305,6 +337,24 @@ function getDigitalRoot(/* num */) {
  */
 function isBracketsBalanced(/* str */) {
   throw new Error('Not implemented');
+  // const strArray = str.split('');
+  // if (strArray[0] === ']' || strArray[0] === '}' || strArray[0] === '>') {
+  //   return false;
+  // }
+  // const leftBracket = strArray.filter((el) => el === '[');
+  // const rightBracket = strArray.filter((el) => el === ']');
+  // const leftCurly = strArray.filter((el) => el === '{');
+  // const rightCurly = strArray.filter((el) => el === '}');
+  // const leftNormal = strArray.filter((el) => el === '(');
+  // const rightNormal = strArray.filter((el) => el === ')');
+  // const leftAngle = strArray.filter((el) => el === '<');
+  // const rightAngle = strArray.filter((el) => el === '>');
+
+  // if (leftBracket.length === rightBracket.length && leftCurly.length === rightCurly.length
+  //   && leftNormal.length === rightNormal.length && leftAngle.length === rightAngle.length) {
+  //   return true;
+  // }
+  // return false;
 }
 
 
