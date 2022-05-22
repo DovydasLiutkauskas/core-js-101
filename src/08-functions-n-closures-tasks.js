@@ -23,8 +23,12 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(/* f, g */) {
-  throw new Error('Not implemented');
+function getComposition(f, g) {
+  const function1 = f;
+  const function2 = g;
+  return function compose(x) {
+    return function1(function2(x));
+  };
 }
 
 
@@ -44,8 +48,11 @@ function getComposition(/* f, g */) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  const riseBy = exponent;
+  return function rising(n) {
+    return n ** riseBy;
+  };
 }
 
 
@@ -81,8 +88,14 @@ function getPolynom() {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  let answer;
+  return () => {
+    if (answer === undefined) {
+      answer = func();
+    }
+    return answer;
+  };
 }
 
 
@@ -102,6 +115,13 @@ function memoize(/* func */) {
  * retryer() => 2
  */
 function retry(/* func, attempts */) {
+  // return () => {
+  //   let attempt = 0;
+  //   while (attempts > attempt) {
+  //     attempt += 1;
+  //     throw new Error(func());
+  //   }
+  // };
   throw new Error('Not implemented');
 }
 
@@ -147,8 +167,8 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
-  throw new Error('Not implemented');
+function partialUsingArguments(fn, ...args1) {
+  return (...args) => fn(...args1, ...args);
 }
 
 
@@ -169,8 +189,12 @@ function partialUsingArguments(/* fn, ...args1 */) {
  *   getId4() => 7
  *   getId10() => 11
  */
-function getIdGeneratorFunction(/* startFrom */) {
-  throw new Error('Not implemented');
+function getIdGeneratorFunction(startFrom) {
+  let counter = startFrom - 1;
+  return function upOne() {
+    counter += 1;
+    return counter;
+  };
 }
 
 
