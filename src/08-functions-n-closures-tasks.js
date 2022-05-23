@@ -49,9 +49,8 @@ function getComposition(f, g) {
  *
  */
 function getPowerFunction(exponent) {
-  const riseBy = exponent;
   return function rising(n) {
-    return n ** riseBy;
+    return n ** exponent;
   };
 }
 
@@ -69,8 +68,8 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...args) {
+  return (answer) => [...args].reverse().reduce((acc, curr, idx) => acc + curr * answer ** idx, 0);
 }
 
 
@@ -114,15 +113,14 @@ function memoize(func) {
  * }, 2);
  * retryer() => 2
  */
-function retry(/* func, attempts */) {
-  // return () => {
-  //   let attempt = 0;
-  //   while (attempts > attempt) {
-  //     attempt += 1;
-  //     throw new Error(func());
-  //   }
-  // };
-  throw new Error('Not implemented');
+function retry(func, attempts) {
+  return () => {
+    try {
+      return func();
+    } catch (e) {
+      return retry(func, attempts - 1)();
+    }
+  };
 }
 
 
